@@ -2,38 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : MonoBehaviour
+public class Teleport2 : MonoBehaviour
 {
-    private LineRenderer line;
     private Ray ray;
     private RaycastHit hit;
     private Transform tr;
     private Transform playerTr;
+    private Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
         tr = GetComponent<Transform>();
         playerTr = GameObject.Find("OVRPlayerController").transform;
-        line = GetComponent<LineRenderer>();
-        line.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!OVRInput.Get(OVRInput.NearTouch.SecondaryIndexTrigger)
-            && !OVRInput.Get(OVRInput.NearTouch.SecondaryThumbButtons)
-            && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
+        if (Input.GetMouseButtonUp(0))
         {
-            line.enabled = true;
-            ray = new Ray(tr.position, tr.forward);
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            // Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.green);
             if (Physics.Raycast(ray, out hit, 30.0f))
             {
-                float dist = hit.distance;
-                line.SetPosition(1, new Vector3(0, 0, dist));
                 string hitTag = hit.collider.tag;
-                if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+                if (Input.GetMouseButtonUp(0))
                 {
                     switch (hitTag)
                     {
@@ -47,10 +41,5 @@ public class Teleport : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            line.enabled = false;
-        }
-
     }
 }
