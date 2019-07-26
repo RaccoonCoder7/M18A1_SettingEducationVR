@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6503789218854355881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3466902190997597911}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3466902190997597911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6503789218854355881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.427, y: 0.515, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7604490814561346638}
+  m_Father: {fileID: 7604490815693815649}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7156665442843093349
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,10 +150,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7604490814561346639}
   m_LocalRotation: {x: -0, y: -0, z: 0.22471602, w: 0.9744243}
-  m_LocalPosition: {x: -0.05, y: 0.753, z: -0.006}
-  m_LocalScale: {x: 0.90615475, y: 0.12070171, z: 0.43059}
+  m_LocalPosition: {x: 0.37700894, y: 0.2380023, z: -0.0060363016}
+  m_LocalScale: {x: 0.9061547, y: 0.120701686, z: 0.43059}
   m_Children: []
-  m_Father: {fileID: 7604490815693815649}
+  m_Father: {fileID: 3466902190997597911}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 25.972002}
 --- !u!33 &7604490814561346635
@@ -241,7 +272,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b34fb8884ae7cca438f293b9448ee29d, type: 2}
+  - {fileID: 2100000, guid: 2e58f59a882b1b34083e7b7130c83f49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,7 +335,7 @@ Transform:
   m_LocalPosition: {x: -282.89355, y: 13.840633, z: 247.45462}
   m_LocalScale: {x: 0.3467418, y: 0.1897806, z: 0.20475483}
   m_Children:
-  - {fileID: 7604490814561346638}
+  - {fileID: 3466902190997597911}
   - {fileID: 7604490814778064609}
   - {fileID: 2503467021893817124}
   m_Father: {fileID: 0}
