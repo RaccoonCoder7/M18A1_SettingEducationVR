@@ -7,6 +7,7 @@ TagManager:
   - GROUND
   - IN
   - OUT
+  - ROPE
   layers:
   - Default
   - TransparentFX

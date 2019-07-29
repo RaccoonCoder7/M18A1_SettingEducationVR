@@ -13,6 +13,7 @@ public class Teleport : MonoBehaviour
     private GameObject pointer;
     private float delayTime = 0.3f;
     private float prevTime;
+    private OVRGrabber grabber;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Teleport : MonoBehaviour
         line.enabled = false;
         pointerPrefab = Resources.Load<GameObject>("Pointer");
         pointer = Instantiate<GameObject>(pointerPrefab);
+        grabber = tr.parent.gameObject.GetComponent<OVRGrabber>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,8 @@ public class Teleport : MonoBehaviour
     {
         if (!OVRInput.Get(OVRInput.NearTouch.SecondaryIndexTrigger)
             && !OVRInput.Get(OVRInput.NearTouch.SecondaryThumbButtons)
-            && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
+            && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)
+            && grabber.m_grabbedObj == null)
         {
             line.enabled = true;
             ray = new Ray(tr.position, tr.forward);
@@ -55,9 +58,7 @@ public class Teleport : MonoBehaviour
                     switch (hitTag)
                     {
                         case "GROUND":
-                            Vector3 pos = pointer.transform.position;
-                            // pos.y += 1.8f;
-                            playerTr.position = pos;
+                            playerTr.position = pointer.transform.position;
                             break;
                         default:
                             break;
