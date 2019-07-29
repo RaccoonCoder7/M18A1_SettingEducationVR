@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - GROUND
+  - IN
+  - OUT
   layers:
   - Default
   - TransparentFX
