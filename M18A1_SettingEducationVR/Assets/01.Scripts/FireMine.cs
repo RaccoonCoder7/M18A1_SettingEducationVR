@@ -14,6 +14,14 @@ public class FireMine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.Find("Detonator/Rope/M18ClaymoreMine"))
+        {
+            Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY   fire");
+        }
+        else
+        {
+            Debug.Log("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN   fire");
+        }
         if (OVRInput.Get(OVRInput.Button.SecondaryThumbstick)){
             fireParticle.Play();
         }
