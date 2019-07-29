@@ -1,0 +1,100 @@
+fileFormatVersion: 2
+guid: 212054da4771e534b83223c9cffcb00c
+timeCreated: 1483644535
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bl8l1
+    100002: bl8l2
+    100004: bl8l3
+    100006: bl8l4
+    100008: bl8r
+    100010: bl8s
+    100012: Black_Locust_08_b
+    100014: //RootNode
+    100016: Bone742
+    100018: Bone744
+    100020: Bone746
+    100022: Bone748
+    100024: Bone750
+    400000: bl8l1
+    400002: bl8l2
+    400004: bl8l3
+    400006: bl8l4
+    400008: bl8r
+    400010: bl8s
+    400012: Black_Locust_08_b
+    400014: //RootNode
+    400016: Bone742
+    400018: Bone744
+    400020: Bone746
+    400022: Bone748
+    400024: Bone750
+    4300000: Black_Locust_08_b
+    9500000: //RootNode
+    13700000: Black_Locust_08_b
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 1
+    secondaryUVAreaDistortion: 1
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 8
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

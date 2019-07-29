@@ -1,0 +1,112 @@
+fileFormatVersion: 2
+guid: 8e99074b78fbbbb4eabf7ab9ca82fb81
+timeCreated: 1483395643
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone250
+    100002: Bone252
+    100004: Bone254
+    100006: Bone256
+    100008: Bone258
+    100010: Bone260
+    100012: Bone262
+    100014: Bone264
+    100016: wb4l1
+    100018: wb4l2
+    100020: wb4l3
+    100022: wb4l4
+    100024: wb4l5
+    100026: wb4l6
+    100028: wb4l7
+    100030: wb4l8
+    100032: wb4r
+    100034: Weed_Backyard_04_b
+    100036: //RootNode
+    400000: Bone250
+    400002: Bone252
+    400004: Bone254
+    400006: Bone256
+    400008: Bone258
+    400010: Bone260
+    400012: Bone262
+    400014: Bone264
+    400016: wb4l1
+    400018: wb4l2
+    400020: wb4l3
+    400022: wb4l4
+    400024: wb4l5
+    400026: wb4l6
+    400028: wb4l7
+    400030: wb4l8
+    400032: wb4r
+    400034: Weed_Backyard_04_b
+    400036: //RootNode
+    4300000: Weed_Backyard_04_b
+    9500000: //RootNode
+    13700000: Weed_Backyard_04_b
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 1
+    secondaryUVAreaDistortion: 1
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 8
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
