@@ -13,7 +13,6 @@ public class Teleport : MonoBehaviour
     private GameObject pointer;
     private float delayTime = 0.3f;
     private float prevTime;
-    public CharacterController cc;
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +33,13 @@ public class Teleport : MonoBehaviour
             && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
         {
             line.enabled = true;
-            pointer.SetActive(true);
             ray = new Ray(tr.position, tr.forward);
             if (Physics.Raycast(ray, out hit, 30.0f))
             {
+                if (!pointer.activeSelf)
+                {
+                    pointer.SetActive(true);
+                }
                 float dist = hit.distance;
                 line.SetPosition(1, new Vector3(0, 0, dist));
                 pointer.transform.position = tr.position + tr.forward * dist;
@@ -62,6 +64,10 @@ public class Teleport : MonoBehaviour
                     }
                     prevTime = Time.time;
                 }
+            }
+            else
+            {
+                pointer.SetActive(false);
             }
         }
         else
