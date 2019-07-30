@@ -39,7 +39,8 @@ public class Connect : MonoBehaviour
         {
             if (other.transform.parent == null
             || other.transform.parent.name == "RopeTween"
-            || other.transform.parent.name == "RightHandAnchor")
+            || other.transform.parent.name == "RightHandAnchor"
+            || other.transform.parent.name == "LeftHandAnchor")
             {
                 OVRGrabbable grabbable = other.gameObject.GetComponent<OVRGrabbable>();
                 foreach (OVRGrabber grabber in grabbers)

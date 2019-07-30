@@ -68,6 +68,7 @@ public class Teleport : MonoBehaviour
             }
             else
             {
+                line.SetPosition(1, new Vector3(0, 0, 30.0f));
                 pointer.SetActive(false);
             }
         }
