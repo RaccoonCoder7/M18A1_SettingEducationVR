@@ -28,9 +28,7 @@ public class Claymore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((GameObject.Find("DetonatorP/Back") && GameObject.Find("ClaymoreMine/M18ClaymoreMine_Tornado_Studio/Front"))
-            || (GameObject.Find("DetonatorP/Front") && GameObject.Find("ClaymoreMine/M18ClaymoreMine_Tornado_Studio/Back"))
-            && !GameObject.Find("DetonatorP/InAnchor/ElectricTestP"))
+        if (detonatorConn.isConnected && this.isConnected && !electricTestConn.isConnected)
         {
             Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY   fire");
 

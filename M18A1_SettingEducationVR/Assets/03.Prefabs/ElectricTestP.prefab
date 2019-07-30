@@ -271,7 +271,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795450798792079414}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -303,7 +303,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3e094bc6313b5014da60e75550d16214, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a94910f74470904e9f52990a977d469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isConnected: 0
   grabbers:
   - {fileID: 0}
   - {fileID: 0}
@@ -591,3 +592,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f57379bd424f94b8b44fa5bb3a23c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detonatorConn: {fileID: 0}
+  electricTestConn: {fileID: 7963048877600544583}

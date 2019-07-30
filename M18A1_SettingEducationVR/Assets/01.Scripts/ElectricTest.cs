@@ -7,6 +7,9 @@ public class ElectricTest : MonoBehaviour
     private OVRGrabbable grabbedObject;
     private OVRGrabber grabber;
 
+    public Connect detonatorConn;
+    public Connect electricTestConn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +20,7 @@ public class ElectricTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Back")
-            || GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Front"))
+        if (detonatorConn.isConnected && !electricTestConn.isConnected)
         {
             Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY   ElectricTest");
             if (OVRInput.Get(OVRInput.Button.SecondaryThumbstick))

@@ -569,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a94910f74470904e9f52990a977d469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isConnected: 0
   grabbers:
   - {fileID: 0}
   - {fileID: 0}

@@ -25,6 +25,10 @@ public class DialogueMgr : MonoBehaviour
 
     private GameObject dialogObj;
 
+    public Connect detonatorConn;
+    public Connect electricTestConn;
+    public Claymore claymoreConn;
+
     enum State
     {
         Idle,
