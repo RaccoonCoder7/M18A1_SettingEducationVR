@@ -8,7 +8,7 @@ public class Connect : MonoBehaviour
     private GameObject connectedObj;
     private bool isConnected;
     private AudioSource audio;
-    public OVRGrabber grabber;
+    public OVRGrabber[] grabbers;
     public AudioClip separate;
 
     private void Start()
@@ -17,28 +17,16 @@ public class Connect : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
-    private void LateUpdate()
-    {
-        if (!isConnected) return;
-        float dist = Vector3.Distance(connectedObj.transform.position, tr.position);
-        // if (dist < 1f)
-        // {
-
-        // }
-        // else
-        // {
-        //     isConnected = false;
-        // }
-        Debug.Log(dist);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if(isConnected) return;
+        if (isConnected) return;
         if (other.tag == "IN")
         {
             OVRGrabbable grabbable = other.transform.parent.GetComponent<OVRGrabbable>();
-            grabber.ForceRelease(grabbable);
+            foreach (OVRGrabber grabber in grabbers)
+            {
+                grabber.ForceRelease(grabbable);
+            }
             isConnected = true;
             connectedObj = other.gameObject;
             Transform anchor = tr.parent.Find("InAnchor");
@@ -49,20 +37,28 @@ public class Connect : MonoBehaviour
         }
         if (other.tag == "ROPE")
         {
-            OVRGrabbable grabbable = other.gameObject.GetComponent<OVRGrabbable>();
-            grabber.ForceRelease(grabbable);
-            isConnected = true;
-            connectedObj = other.gameObject;
-            connectedObj.transform.position = tr.position;
-            connectedObj.transform.rotation = tr.rotation;
-            connectedObj.transform.parent = tr.parent;
-            audio.Play();
+            if (other.transform.parent == null
+            || other.transform.parent.name == "RopeTween"
+            || other.transform.parent.name == "RightHandAnchor")
+            {
+                OVRGrabbable grabbable = other.gameObject.GetComponent<OVRGrabbable>();
+                foreach (OVRGrabber grabber in grabbers)
+                {
+                    grabber.ForceRelease(grabbable);
+                }
+                isConnected = true;
+                connectedObj = other.gameObject;
+                connectedObj.transform.position = tr.position;
+                connectedObj.transform.rotation = tr.rotation;
+                connectedObj.transform.parent = tr.parent;
+                audio.Play();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(!isConnected) return;
+        if (!isConnected) return;
         if (other.tag == "IN")
         {
             isConnected = false;
