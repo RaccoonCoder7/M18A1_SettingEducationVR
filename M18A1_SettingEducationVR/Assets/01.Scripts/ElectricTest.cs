@@ -17,18 +17,19 @@ public class ElectricTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Detonator/ElectricTest/Rope"))
+        if (GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Back")
+            || GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Front"))
         {
             Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY   ElectricTest");
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
+            {
+                gameObject.GetComponent<MeshRenderer>().material.color = new Color(212, 114, 0);
+                StartCoroutine("ColorChange");
+            }
         }
         else
         {
             Debug.Log("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN   ElectricTest");
-        }
-        if (OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = new Color(212, 114, 0);
-            StartCoroutine("ColorChange");
         }
     }
 

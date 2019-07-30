@@ -6,7 +6,7 @@ public class Connect : MonoBehaviour
 {
     private Transform tr;
     private GameObject connectedObj;
-    private bool isConnected;
+    public bool isConnected;
     private AudioSource audio;
     public OVRGrabber[] grabbers;
     public AudioClip separate;

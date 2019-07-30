@@ -7,23 +7,42 @@ public class Claymore : MonoBehaviour
     private bool isConnected;
     private GameObject connectedObj;
     private AudioSource audio;
+    private AudioSource audioFire;
     private Transform anchor;
     public OVRGrabber[] grabbers;
     public ParticleSystem fireParticle;
     public AudioClip separate;
+    public AudioClip fire;
+
+    public Connect detonatorConn;
+    public Connect electricTestConn;
+
     // Start is called before the first frame update
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        audioFire = GetComponent<AudioSource>();
         anchor = transform.Find("Anchor");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick) && isConnected)
+        if ((GameObject.Find("DetonatorP/Back") && GameObject.Find("ClaymoreMine/M18ClaymoreMine_Tornado_Studio/Front"))
+            || (GameObject.Find("DetonatorP/Front") && GameObject.Find("ClaymoreMine/M18ClaymoreMine_Tornado_Studio/Back"))
+            && !GameObject.Find("DetonatorP/InAnchor/ElectricTestP"))
         {
-            fireParticle.Play();
+            Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY   fire");
+
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick) && isConnected)
+            {
+                fireParticle.Play();
+                audioFire.PlayOneShot(fire);
+            }
+        }
+        else
+        {
+            Debug.Log("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN   fire");
         }
     }
 
