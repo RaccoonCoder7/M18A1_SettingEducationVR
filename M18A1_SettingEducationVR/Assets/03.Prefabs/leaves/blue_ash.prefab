@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8436532892978408890}
   - component: {fileID: 8436532892978408894}
   - component: {fileID: 8436532892978408889}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: blue_ash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8436532893643770387}
-  m_LocalRotation: {x: 0.000000020754115, y: -0.3134716, z: -0.000000006851139, w: 0.9495976}
+  m_LocalRotation: {x: 0, y: -0.31347048, z: 0, w: 0.949598}
   m_LocalPosition: {x: -2.585, y: 0.9343692, z: 4.334}
   m_LocalScale: {x: 3, y: 1.8, z: 3}
   m_Children: []

@@ -8,6 +8,7 @@ TagManager:
   - IN
   - OUT
   - ROPE
+  - SETPOINT
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - 
   - DIALOGUE
-  - 
+  - LEAF
   - 
   - 
   - 
