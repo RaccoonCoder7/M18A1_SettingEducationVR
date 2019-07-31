@@ -10,6 +10,7 @@ public class Connect : MonoBehaviour
     private AudioSource audio;
     public OVRGrabber[] grabbers;
     public AudioClip separate;
+    public DialogueMgr dialogueMgr;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class Connect : MonoBehaviour
             connectedObj.transform.parent.rotation = anchor.rotation;
             connectedObj.transform.parent.parent = anchor;
             audio.Play();
+            dialogueMgr.CheckState();
         }
         if (other.tag == "ROPE")
         {
@@ -53,6 +55,7 @@ public class Connect : MonoBehaviour
                 connectedObj.transform.rotation = tr.rotation;
                 connectedObj.transform.parent = tr.parent;
                 audio.Play();
+                dialogueMgr.CheckState();
             }
         }
     }

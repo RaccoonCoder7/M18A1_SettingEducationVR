@@ -5,7 +5,7 @@ using UnityEngine;
 public class Claymore : MonoBehaviour
 {
     private int leaf;
-    private bool isConnected;
+    public bool isConnected;
     private bool isSet;
     private GameObject connectedObj;
     private AudioSource audio;
@@ -21,6 +21,8 @@ public class Claymore : MonoBehaviour
     public AudioClip fire;
     public Connect detonatorConn;
     public Connect electricTestConn;
+    private OVRGrabbable grabbedObject;
+    public DialogueMgr dialogueMgr;
 
     // Start is called before the first frame update
     void Start()
@@ -51,13 +53,22 @@ public class Claymore : MonoBehaviour
             if (detonatorConn.isConnected && this.isConnected
                 && !electricTestConn.isConnected && setPointObj != null)
             {
-                if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick))
+                foreach (OVRGrabber grabber in grabbers)
                 {
+                    if (grabber.grabbedObject != null)
+                    {
+                        grabbedObject = grabber.grabbedObject;
+                    }
+                }
+                if (grabbedObject.name == "DetonatorP" && OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick))
+                {
+                    dialogueMgr.CheckState();
                     fireParticle.Play();
                     audio.PlayOneShot(fire);
                     Destroy(setPointObj);
                     setPointObj = null;
                 }
+                grabbedObject = null;
             }
         }
 
@@ -83,6 +94,7 @@ public class Claymore : MonoBehaviour
                 connectedObj.transform.position = anchor.position;
                 connectedObj.transform.parent = anchor.parent;
                 audio.Play();
+                dialogueMgr.CheckState();
             }
         }
         if (other.tag == "SETPOINT")
@@ -101,6 +113,8 @@ public class Claymore : MonoBehaviour
             transform.parent.GetComponent<OVRGrabbable>().enabled = false;
             transform.parent.GetComponent<BoxCollider>().enabled = false;
             transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            dialogueMgr.isSet = isSet;
+            dialogueMgr.CheckState();
         }
     }
 
@@ -132,6 +146,8 @@ public class Claymore : MonoBehaviour
                 return false;
             }
         }
+        dialogueMgr.isHidden = true;
+        dialogueMgr.CheckState();
         return true;
     }
 }

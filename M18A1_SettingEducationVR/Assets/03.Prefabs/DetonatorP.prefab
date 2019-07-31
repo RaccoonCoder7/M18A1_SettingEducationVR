@@ -574,6 +574,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   separate: {fileID: 8300000, guid: 84a774bb08754ed43a7ab28a580f116f, type: 3}
+  dialogueMgr: {fileID: 0}
 --- !u!1 &2227091067234962269
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +587,7 @@ GameObject:
   - component: {fileID: 1454408185}
   - component: {fileID: 1454408186}
   - component: {fileID: 1454408184}
+  - component: {fileID: 4834391411658768620}
   m_Layer: 0
   m_Name: DetonatorP
   m_TagString: Untagged
@@ -659,3 +661,21 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+--- !u!114 &4834391411658768620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2227091067234962269}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

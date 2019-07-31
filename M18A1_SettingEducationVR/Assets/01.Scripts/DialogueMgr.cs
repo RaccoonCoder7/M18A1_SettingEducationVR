@@ -28,6 +28,14 @@ public class DialogueMgr : MonoBehaviour
     public Connect detonatorConn;
     public Connect electricTestConn;
     public Claymore claymoreConn;
+    
+    public OVRGrabber[] grabbers;
+    private OVRGrabbable grabbedObject;
+    
+    private GameObject okCanvas;
+
+    public bool isSet = false;
+    public bool isHidden = false;
 
     enum State
     {
@@ -60,7 +68,7 @@ public class DialogueMgr : MonoBehaviour
         dialogueList = new List<string>();
 
         uiText = GameObject.Find("DialogueText").GetComponent<Text>();
-        dialogObj = GameObject.Find("Dialog");
+        dialogObj = GameObject.Find("DialogCanvas");
 
         TextAsset data = Resources.Load("DialogueText", typeof(TextAsset)) as TextAsset;
         StringReader sr = new StringReader(data.text);
@@ -77,6 +85,10 @@ public class DialogueMgr : MonoBehaviour
 
         nowState = State.Next;
         mineState = MineState.Idle0;
+
+        okCanvas = GameObject.Find("OkCanvas");
+        okCanvas.SetActive(false);
+        GrabberChange(false);
     }
 
     void CreateDialogueText(string dialogueText)
@@ -98,47 +110,154 @@ public class DialogueMgr : MonoBehaviour
             {
                 StartCoroutine("Run");
             }
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("NEXT")))
+            {
+                switch (mineState)
+                {
+                    case MineState.Idle0:
+                        OutlineOnOff("DetonatorP", true);
+                        OutlineOnOff("ElectricTestP", true);
+                        break;
+                    case MineState.DetonConnETest1:
+                        OutlineOnOff("RopeTween", true);
+                        OutlineOnOff("ElectricTestP", true);
+                        break;
+                    case MineState.ETestConnELine2:
+                        OutlineOnOff("ElectricTestLight", true);
+                        break;
+                    case MineState.ETestCheckLight3:
+                        OutlineOnOff("RopeTween", true);
+                        OutlineOnOff("M18ClaymoreMine", true);
+                        break;
+                    case MineState.MineHide6:
+                        OutlineOnOff("ElectricTestLight", true);
+                        break;
+                    case MineState.ReELineConnMine7:
+                        OutlineOnOff("RopeTween", true);
+                        OutlineOnOff("ElectricTestP", true);
+                        OutlineOnOff("DetonatorP", true);
+                        break;
+                    case MineState.DetonConnELine8:
+                        OutlineOnOff("DetonatorP", true);
+                        break;
+                }
+                GrabberChange(true);
+                okCanvas.SetActive(false);
+            }
         }
     }
 
-    void CheckState()
+    private void OutlineOnOff(string objectName, bool onOff)
     {
-        //if (GameObject.Find("DetonatorP/InAnchor/ElectricTestP") && mineState == MineState.Idle0)
-        //{
-        //    mineState = MineState.DetonConnETest1;
-        //    EndDrawing();
-        //}
+        GameObject.Find(objectName).GetComponent<Outline>().enabled = onOff;
+    }
 
-        //if ((GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Back")
-        //    || GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Front")) && mineState == MineState.DetonConnETest1)
-        //{
-        //    mineState = MineState.ETestConnELine2;
-        //    EndDrawing();
-        //}
+    private void GrabberChange(bool state)
+    {
+        foreach (OVRGrabber grabber in grabbers)
+        {
+            grabber.enabled = state;
+        }
+    }
 
-        //if ((GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Back")
-        //    || GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Front")) && OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick)
-        //    && mineState == MineState.ETestConnELine2)
-        //{
-        //    mineState = MineState.ETestCheckLight3;
-        //    EndDrawing();
-        //}
+    private bool CheckGrapDetonator()
+    {
+        foreach (OVRGrabber grabber in grabbers)
+        {
+            if (grabber.grabbedObject != null)
+            {
+                grabbedObject = grabber.grabbedObject;
+            }
+        }
 
-        //if ((GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Back")
-        //    || GameObject.Find("DetonatorP/InAnchor/ElectricTestP/Front")) && OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick)
-        //    && mineState == MineState.ETestConnELine2)
-        //{
-        //    mineState = MineState.ETestCheckLight3;
-        //    EndDrawing();
-        //}
+        return grabbedObject.name == "DetonatorP";
+    }
 
-        //if ((GameObject.Find("DetonatorP/Back") && GameObject.Find("ClaymoreMine/M18ClaymoreMine_Tornado_Studio/Front"))
-        //    || (GameObject.Find("DetonatorP/Front") && GameObject.Find("ClaymoreMine/M18ClaymoreMine_Tornado_Studio/Back"))
-        //    && !GameObject.Find("DetonatorP/InAnchor/ElectricTestP") && mineState == MineState.ReELineConnMine7)
-        //{
-        //    mineState = MineState.DetonConnELine8;
-        //    EndDrawing();
-        //}
+    public void CheckState()
+    {
+        if (detonatorConn.isConnected && mineState == MineState.Idle0)
+        {
+            mineState = MineState.DetonConnETest1;
+            OutlineOnOff("DetonatorP", false);
+            OutlineOnOff("ElectricTestP", false);
+            EndDrawing();
+        }
+
+        if (detonatorConn.isConnected && electricTestConn.isConnected && mineState == MineState.DetonConnETest1)
+        {
+            mineState = MineState.ETestConnELine2;
+            OutlineOnOff("RopeTween", false);
+            OutlineOnOff("ElectricTestP", false);
+            EndDrawing();
+        }
+
+        if (detonatorConn.isConnected && electricTestConn.isConnected && OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick)
+            && mineState == MineState.ETestConnELine2)
+        {
+            if (CheckGrapDetonator())
+            {
+                OutlineOnOff("ElectricTestLight", false);
+                mineState = MineState.ETestCheckLight3;
+                EndDrawing();
+            }
+            grabbedObject = null;
+        }
+
+        if (detonatorConn.isConnected && electricTestConn.isConnected && claymoreConn.isConnected
+            && mineState == MineState.ETestCheckLight3)
+        {
+            mineState = MineState.ELineConnMine4;
+            OutlineOnOff("RopeTween", false);
+            OutlineOnOff("M18ClaymoreMine", false);
+            EndDrawing();
+        }
+        
+        if (this.isSet && mineState == MineState.ELineConnMine4)
+        {
+            mineState = MineState.MineSet5;
+            EndDrawing();
+        }
+        
+        if (this.isHidden && mineState == MineState.MineSet5)
+        {
+            mineState = MineState.MineHide6;
+            EndDrawing();
+        }
+
+        if (detonatorConn.isConnected && electricTestConn.isConnected && claymoreConn.isConnected
+            && OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick)
+            && mineState == MineState.MineHide6)
+        {
+            if (CheckGrapDetonator())
+            {
+                mineState = MineState.ReELineConnMine7;
+                OutlineOnOff("ElectricTestLight", false);
+                EndDrawing();
+            }
+            grabbedObject = null;
+        }
+
+        if (detonatorConn.isConnected && !electricTestConn.isConnected && claymoreConn.isConnected
+            && mineState == MineState.ReELineConnMine7)
+        {
+            mineState = MineState.DetonConnELine8;
+            OutlineOnOff("RopeTween", false);
+            OutlineOnOff("ElectricTestP", false);
+            OutlineOnOff("DetonatorP", false);
+            EndDrawing();
+        }
+
+        if (detonatorConn.isConnected && !electricTestConn.isConnected && claymoreConn.isConnected
+            && OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick) && mineState == MineState.DetonConnELine8)
+        {
+            if (CheckGrapDetonator())
+            {
+                mineState = MineState.Fire9;
+                OutlineOnOff("DetonatorP", false);
+                EndDrawing();
+            }
+            grabbedObject = null;
+        }
     }
 
     IEnumerator Run()
@@ -151,11 +270,12 @@ public class DialogueMgr : MonoBehaviour
         else if (nextDialogue == texts.Length)
         {
             dialogObj.SetActive(false);
+            okCanvas.SetActive(true);
             nextDialogue = 0;
 
             if (SkipNextCount == dialogueList.Count - 1)
             {
-                SceneManager.LoadScene("StartScene");
+                SceneManager.LoadScene("race_track_lake");
             }
         }
     }
@@ -178,6 +298,7 @@ public class DialogueMgr : MonoBehaviour
         SkipNextCount++;
         CreateDialogueText(dialogueList[SkipNextCount]);
         dialogObj.SetActive(true);
+        GrabberChange(false);
         StartCoroutine("Run");
     }
 }

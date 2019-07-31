@@ -751,6 +751,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6593161558695829275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979590399161866628}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &2186088673250054284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -761,7 +779,7 @@ PrefabInstance:
     - target: {fileID: 7118895736818632968, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c,
         type: 3}
       propertyPath: m_Name
-      value: M18ClaymoreMine_Tornado_Studio
+      value: M18ClaymoreMine
       objectReference: {fileID: 0}
     - target: {fileID: 7123596818992987960, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c,
         type: 3}
@@ -833,10 +851,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 836902603, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c, type: 3}
-      propertyPath: fire
-      value: 
-      objectReference: {fileID: 8300000, guid: c3c9efdb631858f4baee86f701d906b6, type: 3}
     - target: {fileID: 836902604, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c, type: 3}
       propertyPath: m_Size.x
       value: 0.05211848
@@ -853,17 +867,21 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.2373364
       objectReference: {fileID: 0}
+    - target: {fileID: 836902603, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c, type: 3}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 8300000, guid: c3c9efdb631858f4baee86f701d906b6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c, type: 3}
---- !u!4 &8974149587157577652 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7123596818992987960, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2186088673250054284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8979590399161866628 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7118895736818632968, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2186088673250054284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8974149587157577652 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7123596818992987960, guid: 1fa1610d6ae10ef4eb607b4ca8e73b7c,
     type: 3}
   m_PrefabInstance: {fileID: 2186088673250054284}
   m_PrefabAsset: {fileID: 0}

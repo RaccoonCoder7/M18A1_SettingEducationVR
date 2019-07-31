@@ -4,34 +4,39 @@ using UnityEngine;
 
 public class ElectricTest : MonoBehaviour
 {
-    private OVRGrabbable grabbedObject;
-    private OVRGrabber grabber;
 
     public Connect detonatorConn;
     public Connect electricTestConn;
 
+    public OVRGrabber[] grabbers;
+    private OVRGrabbable grabbedObject;
+    public DialogueMgr dialogueMgr;
+
     // Start is called before the first frame update
     void Start()
     {
-        grabber = GameObject.Find("RightHandAnchor").GetComponent<OVRGrabber>();
-        grabbedObject = grabber.grabbedObject;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (detonatorConn.isConnected && !electricTestConn.isConnected)
+        if (detonatorConn.isConnected && electricTestConn.isConnected)
         {
-            Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY   ElectricTest");
-            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
+            foreach (OVRGrabber grabber in grabbers)
             {
+                if (grabber.grabbedObject != null)
+                {
+                    grabbedObject = grabber.grabbedObject;
+                }
+            }
+            if (grabbedObject.name == "DetonatorP" && OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
+            {
+                dialogueMgr.CheckState();
                 gameObject.GetComponent<MeshRenderer>().material.color = new Color(212, 114, 0);
                 StartCoroutine("ColorChange");
             }
-        }
-        else
-        {
-            Debug.Log("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN   ElectricTest");
+            grabbedObject = null;
         }
     }
 

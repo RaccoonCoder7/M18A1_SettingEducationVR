@@ -275,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3301566275919064970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.484, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3301566275919422940}
@@ -775,6 +775,11 @@ MonoBehaviour:
   detonatorConn: {fileID: 0}
   electricTestConn: {fileID: 0}
   claymoreConn: {fileID: 0}
+  grabbers:
+  - {fileID: 3301566275983043345}
+  - {fileID: 3301566276642152660}
+  isSet: 0
+  isHidden: 0
 --- !u!1 &3301566277196847705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1060,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.0068388656
       objectReference: {fileID: 0}
+    - target: {fileID: 8695455864586536849, guid: 8f81a125c2f942a42bea70f13d689d02,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 8695455864784288396, guid: 8f81a125c2f942a42bea70f13d689d02,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1077,6 +1087,16 @@ PrefabInstance:
         \uB300\uD68C\uCC3D\uC5D0 \uC62C\uB9B0\uB4A4 \uC67C\uCABD \uCEE8\uD2B8\uB864\uB7EC\uC758
         \uAC80\uC9C0 \uC190\uAC00\uB77D\uC758 \uBC84\uD2BC\uC744 \uC774\uC6A9\uD558\uC5EC
         \uB118\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256957631940243674, guid: 8f81a125c2f942a42bea70f13d689d02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256957631940243674, guid: 8f81a125c2f942a42bea70f13d689d02,
+        type: 3}
+      propertyPath: m_Name
+      value: OkCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f81a125c2f942a42bea70f13d689d02, type: 3}

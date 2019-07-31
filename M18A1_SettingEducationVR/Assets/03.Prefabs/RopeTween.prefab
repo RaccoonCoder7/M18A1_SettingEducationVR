@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4097308198365232120}
   m_LocalRotation: {x: 0.0065147555, y: -0.99972284, z: 0.0001474321, w: -0.022624256}
-  m_LocalPosition: {x: 0.08050291, y: -0.03850031, z: -0.010493197}
+  m_LocalPosition: {x: 0.08049355, y: -0.038499832, z: -0.010505244}
   m_LocalScale: {x: 1.3044394, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4097308199319416457}
@@ -48,86 +48,86 @@ MonoBehaviour:
   FrontBandPoint:
     Origin: {x: 0, y: 0, z: 0}
     LocalShift: {x: 0, y: 0, z: 0}
-    PositionInWorldSpace: {x: -105.99138, y: 12.039367, z: 104.77572}
+    PositionInWorldSpace: {x: -105.16437, y: 10.927001, z: 105.926704}
     Parent: {fileID: 4097308198756525013}
   BackBandPoint:
     Origin: {x: 0, y: 0, z: 0}
     LocalShift: {x: 0, y: 0, z: 0}
-    PositionInWorldSpace: {x: -105.145325, y: 12.056367, z: 103.78301}
+    PositionInWorldSpace: {x: -104.31831, y: 10.944001, z: 104.934}
     Parent: {fileID: 4097308198598589630}
-  PrevFrontBandPoint: {x: -105.99138, y: 12.039367, z: 104.77572}
-  PrevBackBandPoint: {x: -105.145325, y: 12.056367, z: 103.78301}
+  PrevFrontBandPoint: {x: -105.16437, y: 10.927001, z: 105.926704}
+  PrevBackBandPoint: {x: -104.31831, y: 10.944001, z: 104.934}
   _rope: {fileID: 4097308199319416462}
   _length: 1.3044394
   _sections:
   - _array:
-    - _vertex: {x: -0.56962425, y: -0.044302464, z: -0.069842055}
+    - _vertex: {x: -0.5696122, y: -0.044301987, z: -0.06985141}
       _uv: {x: 0, y: 0}
       _normalCount: 2
       Normals:
-      - {x: 0.03669957, y: -0.8173789, z: -0.5749304}
-      - {x: 0.0071995286, y: 0.9073467, z: -0.42032143}
+      - {x: 0.03668923, y: -0.81758076, z: -0.5746439}
+      - {x: 0.0071837935, y: 0.90741956, z: -0.42016438}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-      _averageNormal: {x: 0.04388708, y: 0.08994329, z: -0.9949795}
-    - _vertex: {x: -0.57124144, y: -0.07422304, z: -0.027407184}
+      _averageNormal: {x: 0.043880932, y: 0.089854956, z: -0.99498767}
+    - _vertex: {x: -0.5712441, y: -0.074222565, z: -0.027385786}
       _uv: {x: 0, y: 0.33333334}
       _normalCount: 2
       Normals:
-      - {x: 0.03669957, y: -0.8173789, z: -0.5749304}
-      - {x: -0.043891747, y: -0.08996564, z: 0.99497724}
+      - {x: 0.03668923, y: -0.81758076, z: -0.5746439}
+      - {x: -0.043877248, y: -0.08977741, z: 0.9949949}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-      _averageNormal: {x: -0.007193027, y: -0.9074511, z: 0.42009628}
-    - _vertex: {x: -0.572139, y: -0.02247572, z: -0.022767797}
+      _averageNormal: {x: -0.007187858, y: -0.90733755, z: 0.4203415}
+    - _vertex: {x: -0.57212967, y: -0.022475243, z: -0.022755727}
       _uv: {x: 0, y: 0.6666667}
       _normalCount: 2
       Normals:
-      - {x: -0.043891747, y: -0.08996564, z: 0.99497724}
-      - {x: 0.0071995286, y: 0.9073467, z: -0.42032143}
+      - {x: -0.043877248, y: -0.08977741, z: 0.9949949}
+      - {x: 0.0071837935, y: 0.90741956, z: -0.42016438}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-      _averageNormal: {x: -0.036697954, y: 0.8175088, z: 0.57474566}
+      _averageNormal: {x: -0.036687672, y: 0.81751335, z: 0.5747399}
   - _array:
-    - _vertex: {x: 0.7333691, y: -0.027302265, z: -0.010837182}
+    - _vertex: {x: 0.73338115, y: -0.027301788, z: -0.010846555}
       _uv: {x: 1, y: 0}
       _normalCount: 2
       Normals:
-      - {x: 0.03669957, y: -0.8173789, z: -0.5749304}
-      - {x: 0.0071995286, y: 0.9073467, z: -0.42032143}
+      - {x: 0.03668923, y: -0.81758076, z: -0.5746439}
+      - {x: 0.0071837935, y: 0.90741956, z: -0.42016438}
       - {x: 0.0011863174, y: -0.7822062, z: -0.6230185}
       - {x: 0.00068809144, y: 0.930621, z: -0.3659836}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-      _averageNormal: {x: 0.04388708, y: 0.08994329, z: -0.9949795}
-    - _vertex: {x: 0.7317613, y: -0.057222843, z: 0.031609744}
+      _averageNormal: {x: 0.043880932, y: 0.089854956, z: -0.99498767}
+    - _vertex: {x: 0.7317398, y: -0.057222366, z: 0.03160706}
       _uv: {x: 1, y: 0.33333334}
       _normalCount: 2
       Normals:
-      - {x: 0.03669957, y: -0.8173789, z: -0.5749304}
-      - {x: -0.043891747, y: -0.08996564, z: 0.99497724}
+      - {x: 0.03668923, y: -0.81758076, z: -0.5746439}
+      - {x: -0.043877248, y: -0.08977741, z: 0.9949949}
       - {x: 0.0011863174, y: -0.7822062, z: -0.6230185}
       - {x: -0.0018742621, y: -0.14840621, z: 0.98892474}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-      _averageNormal: {x: -0.007193027, y: -0.9074511, z: 0.42009628}
-    - _vertex: {x: 0.7308637, y: -0.005475521, z: 0.03624913}
+      _averageNormal: {x: -0.007187858, y: -0.90733755, z: 0.4203415}
+    - _vertex: {x: 0.7308544, y: -0.0054750443, z: 0.03623709}
       _uv: {x: 1, y: 0.6666667}
       _normalCount: 2
       Normals:
-      - {x: -0.043891747, y: -0.08996564, z: 0.99497724}
-      - {x: 0.0071995286, y: 0.9073467, z: -0.42032143}
+      - {x: -0.043877248, y: -0.08977741, z: 0.9949949}
+      - {x: 0.0071837935, y: 0.90741956, z: -0.42016438}
       - {x: -0.0018742621, y: -0.14840621, z: 0.98892474}
       - {x: 0.00068809144, y: 0.930621, z: -0.3659836}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-      _averageNormal: {x: -0.036697954, y: 0.8175088, z: 0.57474566}
+      _averageNormal: {x: -0.036687672, y: 0.81751335, z: 0.5747399}
   _backSectionDistance: 0.000051178973
   _maxDistance: 0.029650666
   _material: {fileID: 0}
@@ -185,8 +185,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3286602, y: 0.45, z: 0.45}
-  m_Center: {x: -0.58737385, y: 0, z: -0.0000010518775}
+  m_Size: {x: 1.6748667, y: 0.45, z: 0.45000002}
+  m_Center: {x: -0.039930068, y: 0, z: -0.000000702078}
 --- !u!23 &4097308198598589625
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -302,8 +302,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4729065, y: 0.45000002, z: 0.45}
-  m_Center: {x: 0.60185695, y: 0.020736007, z: -0.00011911469}
+  m_Size: {x: 1.5311809, y: 0.45000002, z: 0.45000002}
+  m_Center: {x: -0.02382883, y: 0.020736007, z: -0.00011983943}
 --- !u!23 &4097308198756525012
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 4097308199319416462}
   - component: {fileID: 4097308199319416463}
   - component: {fileID: 4097308199319416460}
+  - component: {fileID: 1542146938995841230}
   m_Layer: 0
   m_Name: RopeTween
   m_TagString: Untagged
@@ -517,3 +518,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4097308199319416461}
   m_Mesh: {fileID: 0}
+--- !u!114 &1542146938995841230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097308199319416461}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
