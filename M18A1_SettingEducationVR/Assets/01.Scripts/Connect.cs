@@ -5,7 +5,7 @@ using UnityEngine;
 public class Connect : MonoBehaviour
 {
     private Transform tr;
-    private GameObject connectedObj;
+    public GameObject connectedObj;
     public bool isConnected;
     private AudioSource audio;
     public OVRGrabber[] grabbers;
