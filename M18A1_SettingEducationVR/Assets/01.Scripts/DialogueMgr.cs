@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class DialogueMgr : MonoBehaviour
 {
@@ -24,14 +25,16 @@ public class DialogueMgr : MonoBehaviour
     private int SkipNextCount = 0;
 
     private GameObject dialogObj;
+    private VideoPlayer videoPlayer;
+    public VideoClip[] videoClips;
 
     public Connect detonatorConn;
     public Connect electricTestConn;
     public Claymore claymoreConn;
-    
+
     public OVRGrabber[] grabbers;
     private OVRGrabbable grabbedObject;
-    
+
     private GameObject okCanvas;
 
     public bool isSet = false;
@@ -69,6 +72,7 @@ public class DialogueMgr : MonoBehaviour
 
         uiText = GameObject.Find("DialogueText").GetComponent<Text>();
         dialogObj = GameObject.Find("DialogCanvas");
+        videoPlayer = dialogObj.transform.parent.Find("VideoPlayer").GetComponent<VideoPlayer>();
 
         TextAsset data = Resources.Load("DialogueText", typeof(TextAsset)) as TextAsset;
         StringReader sr = new StringReader(data.text);
@@ -108,6 +112,11 @@ public class DialogueMgr : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerBT))
             {
+                if (mineState == MineState.Idle0)
+                {
+                    videoPlayer.gameObject.SetActive(false);
+                    dialogObj.transform.parent.Find("VideoPlayer2").gameObject.SetActive(false);
+                }
                 StartCoroutine("Run");
             }
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("NEXT")))
@@ -124,6 +133,8 @@ public class DialogueMgr : MonoBehaviour
                         break;
                     case MineState.ETestConnELine2:
                         OutlineOnOff("ElectricTestLight", true);
+                        videoPlayer.gameObject.SetActive(true);
+                        videoPlayer.clip = videoClips[1];
                         break;
                     case MineState.ETestCheckLight3:
                         OutlineOnOff("RopeTween", true);
@@ -197,6 +208,7 @@ public class DialogueMgr : MonoBehaviour
             if (CheckGrapDetonator())
             {
                 OutlineOnOff("ElectricTestLight", false);
+                videoPlayer.gameObject.SetActive(false);
                 mineState = MineState.ETestCheckLight3;
                 EndDrawing();
             }
@@ -209,15 +221,18 @@ public class DialogueMgr : MonoBehaviour
             mineState = MineState.ELineConnMine4;
             OutlineOnOff("RopeTween", false);
             OutlineOnOff("M18ClaymoreMine", false);
+            videoPlayer.gameObject.SetActive(true);
+            videoPlayer.clip = videoClips[0];
             EndDrawing();
         }
-        
+
         if (this.isSet && mineState == MineState.ELineConnMine4)
         {
             mineState = MineState.MineSet5;
+            videoPlayer.gameObject.SetActive(false);
             EndDrawing();
         }
-        
+
         if (this.isHidden && mineState == MineState.MineSet5)
         {
             mineState = MineState.MineHide6;
@@ -240,7 +255,7 @@ public class DialogueMgr : MonoBehaviour
         if (detonatorConn.isConnected && !electricTestConn.isConnected && claymoreConn.isConnected
             && mineState == MineState.ReELineConnMine7)
         {
-            GameObject enemies =  Resources.Load("Enemies") as GameObject;
+            GameObject enemies = Resources.Load("Enemies") as GameObject;
             Instantiate(enemies);
             mineState = MineState.DetonConnELine8;
             OutlineOnOff("RopeTween", false);
