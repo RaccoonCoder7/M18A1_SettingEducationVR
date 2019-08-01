@@ -112,7 +112,7 @@ public class DialogueMgr : MonoBehaviour
             float dist = hit.distance;
             line.SetPosition(1, new Vector3(0, 0, dist));
         }
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+        if (OVRInput.GetUp(OVRInput.Button.One))
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerBT))
             {
@@ -215,6 +215,7 @@ public class DialogueMgr : MonoBehaviour
             OutlineOnOff("M18ClaymoreMine", false);
             OutlineOnOff("RopeTween", false);
             OutlineOnOff("ElectricTestP", false);
+            videoPlayer.gameObject.SetActive(false);
             EndDrawing();
         }
 
@@ -225,7 +226,6 @@ public class DialogueMgr : MonoBehaviour
             if (CheckGrapDetonator())
             {
                 mineState = MineState.ETestCheckLight3;
-                videoPlayer.gameObject.SetActive(false);
                 OutlineOnOff("DetonatorP", false);
                 OutlineOnOff("ElectricTestLight", false);
                 videoPlayer.gameObject.SetActive(true);
