@@ -145,7 +145,11 @@ public class DialogueMgr : MonoBehaviour
                     case MineState.ETestCheckLight3:
                         StartCoroutine("GroundTag", "GROUND");
                         break;
+                    case MineState.MineSet5:
+                        StartCoroutine("GroundTag", "GROUND");
+                        break;
                     case MineState.MineHide6:
+                        StartCoroutine("GroundTag", "GROUND");
                         OutlineOnOff("DetonatorP", true);
                         OutlineOnOff("ElectricTestLight", true);
                         break;
@@ -153,7 +157,6 @@ public class DialogueMgr : MonoBehaviour
                         OutlineOnOff("RopeTween", true);
                         OutlineOnOff("ElectricTestP", true);
                         OutlineOnOff("DetonatorP", true);
-                        StartCoroutine("GroundTag", "Untagged");
                         GameObject.Find("ElectricTestP").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0);
                         break;
                     case MineState.DetonConnELine8:
@@ -239,12 +242,14 @@ public class DialogueMgr : MonoBehaviour
         {
             mineState = MineState.MineSet5;
             videoPlayer.gameObject.SetActive(false);
+            ground.tag = "Untagged";
             EndDrawing();
         }
 
         if (this.isHidden && mineState == MineState.MineSet5)
         {
             mineState = MineState.MineHide6;
+            ground.tag = "Untagged";
             EndDrawing();
         }
 
@@ -257,6 +262,7 @@ public class DialogueMgr : MonoBehaviour
                 mineState = MineState.ReELineConnMine7;
                 OutlineOnOff("DetonatorP", false);
                 OutlineOnOff("ElectricTestLight", false);
+                ground.tag = "Untagged";
                 EndDrawing();
             }
             grabbedObject = null;
