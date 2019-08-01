@@ -112,61 +112,66 @@ public class DialogueMgr : MonoBehaviour
             float dist = hit.distance;
             line.SetPosition(1, new Vector3(0, 0, dist));
         }
-        if (OVRInput.GetUp(OVRInput.Button.One))
+        if (!OVRInput.Get(OVRInput.NearTouch.SecondaryIndexTrigger)
+            && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
         {
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerBT))
+            if (OVRInput.GetUp(OVRInput.Button.One))
             {
-                if (mineState == MineState.Idle0)
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerBT))
                 {
-                    videoPlayer.gameObject.SetActive(false);
-                    dialogObj.transform.parent.Find("VideoPlayer2").gameObject.SetActive(false);
+                    if (mineState == MineState.Idle0)
+                    {
+                        videoPlayer.gameObject.SetActive(false);
+                        dialogObj.transform.parent.Find("VideoPlayer2").gameObject.SetActive(false);
+                    }
+                    StartCoroutine("Run");
                 }
-                StartCoroutine("Run");
-            }
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("NEXT")))
-            {
-                switch (mineState)
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("NEXT")))
                 {
-                    case MineState.Idle0:
-                        OutlineOnOff("DetonatorP", true);
-                        OutlineOnOff("ElectricTestP", true);
-                        break;
-                    case MineState.DetonConnETest1:
-                        OutlineOnOff("RopeTween", true);
-                        OutlineOnOff("M18ClaymoreMine", true);
-                        OutlineOnOff("ElectricTestP", true);
-                        break;
-                    case MineState.ETestConnELine2:
-                        OutlineOnOff("DetonatorP", true);
-                        OutlineOnOff("ElectricTestLight", true);
-                        videoPlayer.gameObject.SetActive(true);
-                        videoPlayer.clip = videoClips[1];
-                        break;
-                    case MineState.ETestCheckLight3:
-                        StartCoroutine("GroundTag", "GROUND");
-                        break;
-                    case MineState.MineSet5:
-                        StartCoroutine("GroundTag", "GROUND");
-                        break;
-                    case MineState.MineHide6:
-                        StartCoroutine("GroundTag", "GROUND");
-                        OutlineOnOff("DetonatorP", true);
-                        OutlineOnOff("ElectricTestLight", true);
-                        break;
-                    case MineState.ReELineConnMine7:
-                        OutlineOnOff("RopeTween", true);
-                        OutlineOnOff("ElectricTestP", true);
-                        OutlineOnOff("DetonatorP", true);
-                        GameObject.Find("ElectricTestP").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0);
-                        break;
-                    case MineState.DetonConnELine8:
-                        OutlineOnOff("DetonatorP", true);
-                        break;
+                    switch (mineState)
+                    {
+                        case MineState.Idle0:
+                            OutlineOnOff("DetonatorP", true);
+                            OutlineOnOff("ElectricTestP", true);
+                            break;
+                        case MineState.DetonConnETest1:
+                            OutlineOnOff("RopeTween", true);
+                            OutlineOnOff("M18ClaymoreMine", true);
+                            OutlineOnOff("ElectricTestP", true);
+                            break;
+                        case MineState.ETestConnELine2:
+                            OutlineOnOff("DetonatorP", true);
+                            OutlineOnOff("ElectricTestLight", true);
+                            videoPlayer.gameObject.SetActive(true);
+                            videoPlayer.clip = videoClips[1];
+                            break;
+                        case MineState.ETestCheckLight3:
+                            StartCoroutine("GroundTag", "GROUND");
+                            break;
+                        case MineState.MineSet5:
+                            StartCoroutine("GroundTag", "GROUND");
+                            break;
+                        case MineState.MineHide6:
+                            StartCoroutine("GroundTag", "GROUND");
+                            OutlineOnOff("DetonatorP", true);
+                            OutlineOnOff("ElectricTestLight", true);
+                            break;
+                        case MineState.ReELineConnMine7:
+                            OutlineOnOff("RopeTween", true);
+                            OutlineOnOff("ElectricTestP", true);
+                            OutlineOnOff("DetonatorP", true);
+                            GameObject.Find("ElectricTestP").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0);
+                            break;
+                        case MineState.DetonConnELine8:
+                            OutlineOnOff("DetonatorP", true);
+                            break;
+                    }
+                    GrabberChange(true);
+                    okCanvas.SetActive(false);
                 }
-                GrabberChange(true);
-                okCanvas.SetActive(false);
             }
         }
+        
     }
 
     IEnumerator GroundTag(string tagName)
