@@ -38,6 +38,9 @@ public class DialogueMgr : MonoBehaviour
     private GameObject okCanvas;
     private GameObject ground;
 
+    private Vector3 originPos;
+    private Quaternion originRot;
+
     public bool isSet = false;
     public bool isHidden = false;
 
@@ -248,6 +251,11 @@ public class DialogueMgr : MonoBehaviour
             mineState = MineState.MineSet5;
             videoPlayer.gameObject.SetActive(false);
             ground.tag = "Untagged";
+            originPos = dialogObj.transform.parent.position;
+            originRot = dialogObj.transform.parent.rotation;
+            Transform anchorTr = GameObject.Find("CanvasAnchor").transform;
+            dialogObj.transform.parent.position = anchorTr.position;
+            dialogObj.transform.parent.rotation = anchorTr.rotation;
             EndDrawing();
         }
 
@@ -268,6 +276,8 @@ public class DialogueMgr : MonoBehaviour
                 OutlineOnOff("DetonatorP", false);
                 OutlineOnOff("ElectricTestLight", false);
                 ground.tag = "Untagged";
+                dialogObj.transform.parent.position = originPos;
+                dialogObj.transform.parent.rotation = originRot;
                 EndDrawing();
             }
             grabbedObject = null;
