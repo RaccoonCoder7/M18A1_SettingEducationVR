@@ -240,6 +240,8 @@ public class DialogueMgr : MonoBehaviour
         if (detonatorConn.isConnected && !electricTestConn.isConnected && claymoreConn.isConnected
             && mineState == MineState.ReELineConnMine7)
         {
+            GameObject enemies =  Resources.Load("Enemies") as GameObject;
+            Instantiate(enemies);
             mineState = MineState.DetonConnELine8;
             OutlineOnOff("RopeTween", false);
             OutlineOnOff("ElectricTestP", false);

@@ -67,6 +67,7 @@ public class Claymore : MonoBehaviour
                     audio.PlayOneShot(fire);
                     Destroy(setPointObj);
                     setPointObj = null;
+                    Destroy(GameObject.Find("Enemies(Clone)"));
                 }
                 grabbedObject = null;
             }
