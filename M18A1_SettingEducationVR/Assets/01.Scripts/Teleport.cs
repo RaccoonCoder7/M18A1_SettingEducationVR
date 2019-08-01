@@ -31,7 +31,6 @@ public class Teleport : MonoBehaviour
     void Update()
     {
         if (!OVRInput.Get(OVRInput.NearTouch.SecondaryIndexTrigger)
-            && !OVRInput.Get(OVRInput.NearTouch.SecondaryThumbButtons)
             && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)
             && grabber.m_grabbedObj == null)
         {
@@ -49,7 +48,7 @@ public class Teleport : MonoBehaviour
                 pointer.transform.rotation = Quaternion.LookRotation(hit.normal);
                 pointer.transform.position += pointer.transform.forward * 0.1f;
                 string hitTag = hit.collider.tag;
-                if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+                if (OVRInput.GetUp(OVRInput.Button.One))
                 {
                     if (delayTime > Time.time - prevTime)
                     {

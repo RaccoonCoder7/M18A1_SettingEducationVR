@@ -108,7 +108,7 @@ public class DialogueMgr : MonoBehaviour
             float dist = hit.distance;
             line.SetPosition(1, new Vector3(0, 0, dist));
         }
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+        if (OVRInput.GetUp(OVRInput.Button.One))
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerBT))
             {
