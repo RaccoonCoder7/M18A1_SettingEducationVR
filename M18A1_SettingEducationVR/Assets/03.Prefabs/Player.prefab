@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoClips:
-  - {fileID: 32900000, guid: 398db268b172546409ab8670b316a2ce, type: 3}
-  - {fileID: 32900000, guid: 3a2bb720c1b79b748964236e1150a41c, type: 3}
+  - {fileID: 32900000, guid: b2e4409ca078ff94eba7750cef56339b, type: 3}
+  - {fileID: 32900000, guid: 3f496cc61f5bf2e4280ced1767795f61, type: 3}
   detonatorConn: {fileID: 0}
   electricTestConn: {fileID: 0}
   claymoreConn: {fileID: 0}
