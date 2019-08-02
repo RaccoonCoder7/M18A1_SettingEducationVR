@@ -17,8 +17,7 @@ public class Claymore : MonoBehaviour
     private List<MeshRenderer> cylinders = new List<MeshRenderer>();
     public OVRGrabber[] grabbers;
     public ParticleSystem fireParticle;
-    public AudioClip separate;
-    public AudioClip fire;
+    public AudioClip[] clips;
     public Connect detonatorConn;
     public Connect electricTestConn;
     private OVRGrabbable grabbedObject;
@@ -64,15 +63,20 @@ public class Claymore : MonoBehaviour
                 {
                     dialogueMgr.CheckState();
                     fireParticle.Play();
-                    audio.PlayOneShot(fire);
+                    audio.PlayOneShot(clips[1]);
                     Destroy(setPointObj);
                     setPointObj = null;
-                    Destroy(GameObject.Find("Enemies(Clone)"));
+                    Destroy(GameObject.Find("Enemies(Clone)"), 0.2f);
+                    StartCoroutine("WaitAndPlay");
                 }
                 grabbedObject = null;
             }
         }
+    }
 
+    IEnumerator WaitAndPlay(){
+        yield return new WaitForSeconds(0.4f);
+        audio.PlayOneShot(clips[2]);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -127,7 +131,7 @@ public class Claymore : MonoBehaviour
             isConnected = false;
             connectedObj = null;
             other.transform.parent = null;
-            audio.PlayOneShot(separate);
+            audio.PlayOneShot(clips[0]);
         }
     }
 

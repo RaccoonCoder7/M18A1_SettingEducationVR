@@ -44,6 +44,8 @@ public class DialogueMgr : MonoBehaviour
     private Vector3 originPos;
     private Quaternion originRot;
 
+    private AudioSource audio;
+
     public bool isSet = false;
     public bool isHidden = false;
 
@@ -83,6 +85,8 @@ public class DialogueMgr : MonoBehaviour
         uiText = GameObject.Find("DialogueText").GetComponent<Text>();
         dialogObj = GameObject.Find("DialogCanvas");
         videoPlayer = dialogObj.transform.parent.Find("VideoPlayer").GetComponent<VideoPlayer>();
+
+        audio = GetComponent<AudioSource>();
 
         TextAsset data = Resources.Load("DialogueText", typeof(TextAsset)) as TextAsset;
         StringReader sr = new StringReader(data.text);
@@ -365,9 +369,7 @@ public class DialogueMgr : MonoBehaviour
             Debug.LogError("00: " + i);
             if (i != 0 && text.Substring(i - 1, 1) == "<")
             {
-                Debug.LogError("11111");
                 i = getEndOfTag(text, i);
-                Debug.LogError("22222");
                 if (i == 0) Debug.LogError("getEndOfTag Error");
             }
             uiText.text = text.Substring(0, i);
@@ -387,7 +389,7 @@ public class DialogueMgr : MonoBehaviour
                 count++;
                 if (count == 2)
                 {
-                    return j+1;
+                    return j + 1;
                 }
             }
         }
@@ -396,6 +398,7 @@ public class DialogueMgr : MonoBehaviour
 
     public void EndDrawing()
     {
+        audio.Play();
         SkipNextCount++;
         CreateDialogueText(dialogueList[SkipNextCount]);
         dialogObj.SetActive(true);
