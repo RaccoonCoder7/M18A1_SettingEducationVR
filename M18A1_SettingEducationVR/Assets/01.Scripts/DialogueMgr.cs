@@ -328,7 +328,6 @@ public class DialogueMgr : MonoBehaviour
 
     IEnumerator Run()
     {
-        Debug.Log("sssssssssssss");
         if (nextDialogue < texts.Length && nowState == State.Next)
         {
             yield return PlayLine(texts[nextDialogue]);
@@ -343,6 +342,7 @@ public class DialogueMgr : MonoBehaviour
             if (SkipNextCount == dialogueList.Count - 1)
             {
                 SceneManager.LoadScene("race_track_lake");
+                okCanvas.SetActive(false);
             }
         }
     }
@@ -350,14 +350,39 @@ public class DialogueMgr : MonoBehaviour
     IEnumerator PlayLine(string text)
     {
         nowState = State.Playing;
-        for (int i = 0; i < text.Length + 1; i += 1)
+        for (int i = 0; i < text.Length + 1; i++)
         {
             yield return new WaitForSeconds(0.02f);
+            Debug.LogError("00: " + i);
+            if (i != 0 && text.Substring(i - 1, 1) == "<")
+            {
+                Debug.LogError("11111");
+                i = getEndOfTag(text, i);
+                Debug.LogError("22222");
+                if (i == 0) Debug.LogError("getEndOfTag Error");
+            }
             uiText.text = text.Substring(0, i);
         }
 
         yield return new WaitForSeconds(0.5f);
         nowState = State.Next;
+    }
+
+    private int getEndOfTag(string text, int i)
+    {
+        int count = 0;
+        for (int j = i; j < text.Length + 1; j++)
+        {
+            if (text.Substring(j, 1) == ">")
+            {
+                count++;
+                if (count == 2)
+                {
+                    return j+1;
+                }
+            }
+        }
+        return 0;
     }
 
     public void EndDrawing()
