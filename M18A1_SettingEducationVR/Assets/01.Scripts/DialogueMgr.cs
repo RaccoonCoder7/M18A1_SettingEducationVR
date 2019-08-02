@@ -31,6 +31,9 @@ public class DialogueMgr : MonoBehaviour
     public Connect detonatorConn;
     public Connect electricTestConn;
     public Claymore claymoreConn;
+    private ArrowRenderer arrowRenderer;
+    private Vector3 claymoreSetPoint;
+    private bool showArrow;
 
     public OVRGrabber[] grabbers;
     private OVRGrabbable grabbedObject;
@@ -74,6 +77,9 @@ public class DialogueMgr : MonoBehaviour
 
         dialogueList = new List<string>();
 
+        arrowRenderer = GameObject.Find("ArrowRenderer").GetComponent<ArrowRenderer>();
+        claymoreSetPoint = GameObject.Find("ClaymoreSetPoint").transform.position;
+
         uiText = GameObject.Find("DialogueText").GetComponent<Text>();
         dialogObj = GameObject.Find("DialogCanvas");
         videoPlayer = dialogObj.transform.parent.Find("VideoPlayer").GetComponent<VideoPlayer>();
@@ -110,6 +116,9 @@ public class DialogueMgr : MonoBehaviour
     void Update()
     {
         ray = new Ray(tr.position, tr.forward);
+        if(showArrow){
+            arrowRenderer.SetPositions(claymoreConn.gameObject.transform.position, claymoreSetPoint);
+        }
         if (Physics.Raycast(ray, out hit, 16.0f))
         {
             float dist = hit.distance;
@@ -150,6 +159,7 @@ public class DialogueMgr : MonoBehaviour
                             break;
                         case MineState.ETestCheckLight3:
                             StartCoroutine("GroundTag", "GROUND");
+                            showArrow = true;
                             break;
                         case MineState.MineSet5:
                             StartCoroutine("GroundTag", "GROUND");
@@ -174,7 +184,6 @@ public class DialogueMgr : MonoBehaviour
                 }
             }
         }
-        
     }
 
     IEnumerator GroundTag(string tagName)
@@ -256,6 +265,8 @@ public class DialogueMgr : MonoBehaviour
             Transform anchorTr = GameObject.Find("CanvasAnchor").transform;
             dialogObj.transform.parent.position = anchorTr.position;
             dialogObj.transform.parent.rotation = anchorTr.rotation;
+            arrowRenderer.SetPositions(Vector3.zero, Vector3.zero);
+            showArrow = false;
             EndDrawing();
         }
 
