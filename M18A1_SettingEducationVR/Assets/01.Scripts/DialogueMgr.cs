@@ -116,8 +116,17 @@ public class DialogueMgr : MonoBehaviour
     void Update()
     {
         ray = new Ray(tr.position, tr.forward);
-        if(showArrow){
-            arrowRenderer.SetPositions(claymoreConn.gameObject.transform.position, claymoreSetPoint);
+        if (showArrow)
+        {
+            if (Vector3.Distance(claymoreConn.gameObject.transform.position, claymoreSetPoint) > 3f)
+            {
+                arrowRenderer.SetPositions(claymoreConn.gameObject.transform.position, claymoreSetPoint);
+            }
+            else
+            {
+                arrowRenderer.SetPositions(Vector3.zero, Vector3.zero);
+                showArrow = false;
+            }
         }
         if (Physics.Raycast(ray, out hit, 16.0f))
         {
@@ -265,8 +274,6 @@ public class DialogueMgr : MonoBehaviour
             Transform anchorTr = GameObject.Find("CanvasAnchor").transform;
             dialogObj.transform.parent.position = anchorTr.position;
             dialogObj.transform.parent.rotation = anchorTr.rotation;
-            arrowRenderer.SetPositions(Vector3.zero, Vector3.zero);
-            showArrow = false;
             EndDrawing();
         }
 
