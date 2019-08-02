@@ -23,13 +23,13 @@ public class ElectricTest : MonoBehaviour
     {
         if (detonatorConn.isConnected && electricTestConn.isConnected)
         {
-            foreach (OVRGrabber grabber in grabbers)
-            {
-                if (grabber.grabbedObject != null)
-                {
-                    grabbedObject = grabber.grabbedObject;
-                }
-            }
+            //foreach (OVRGrabber grabber in grabbers)
+            //{
+            //    if (grabber.grabbedObject != null)
+            //    {
+            //        grabbedObject = grabber.grabbedObject;
+            //    }
+            //}
             if (grabbedObject.name == "DetonatorP" && OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
             {
                 dialogueMgr.CheckState();

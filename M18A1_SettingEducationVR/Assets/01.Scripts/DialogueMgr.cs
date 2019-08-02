@@ -105,7 +105,7 @@ public class DialogueMgr : MonoBehaviour
 
         okCanvas = GameObject.Find("OkCanvas");
         okCanvas.SetActive(false);
-        GrabberChange(false);
+        //GrabberChange(false);
     }
 
     void CreateDialogueText(string dialogueText)
@@ -143,7 +143,6 @@ public class DialogueMgr : MonoBehaviour
                     if (mineState == MineState.Idle0)
                     {
                         videoPlayer.gameObject.SetActive(false);
-                        dialogObj.transform.parent.Find("VideoPlayer2").gameObject.SetActive(false);
                     }
                     StartCoroutine("Run");
                 }
@@ -188,7 +187,7 @@ public class DialogueMgr : MonoBehaviour
                             OutlineOnOff("DetonatorP", true);
                             break;
                     }
-                    GrabberChange(true);
+                    //GrabberChange(true);
                     okCanvas.SetActive(false);
                 }
             }
@@ -206,13 +205,13 @@ public class DialogueMgr : MonoBehaviour
         GameObject.Find(objectName).GetComponent<Outline>().enabled = onOff;
     }
 
-    private void GrabberChange(bool state)
-    {
-        foreach (OVRGrabber grabber in grabbers)
-        {
-            grabber.enabled = state;
-        }
-    }
+    //private void GrabberChange(bool state)
+    //{
+    //    foreach (OVRGrabber grabber in grabbers)
+    //    {
+    //        grabber.enabled = state;
+    //    }
+    //}
 
     private bool CheckGrapDetonator()
     {
@@ -329,6 +328,7 @@ public class DialogueMgr : MonoBehaviour
 
     IEnumerator Run()
     {
+        Debug.Log("sssssssssssss");
         if (nextDialogue < texts.Length && nowState == State.Next)
         {
             yield return PlayLine(texts[nextDialogue]);
@@ -365,7 +365,7 @@ public class DialogueMgr : MonoBehaviour
         SkipNextCount++;
         CreateDialogueText(dialogueList[SkipNextCount]);
         dialogObj.SetActive(true);
-        GrabberChange(false);
+        //GrabberChange(false);
         StartCoroutine("Run");
     }
 }
