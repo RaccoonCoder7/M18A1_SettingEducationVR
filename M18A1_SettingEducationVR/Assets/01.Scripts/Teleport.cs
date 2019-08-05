@@ -36,7 +36,7 @@ public class Teleport : MonoBehaviour
         {
             line.enabled = true;
             ray = new Ray(tr.position, tr.forward);
-            if (Physics.Raycast(ray, out hit, 30.0f))
+            if (Physics.Raycast(ray, out hit, 50.0f))
             {
                 if (!pointer.activeSelf)
                 {
@@ -67,7 +67,7 @@ public class Teleport : MonoBehaviour
             }
             else
             {
-                line.SetPosition(1, new Vector3(0, 0, 30.0f));
+                line.SetPosition(1, new Vector3(0, 0, 50.0f));
                 pointer.SetActive(false);
             }
         }
