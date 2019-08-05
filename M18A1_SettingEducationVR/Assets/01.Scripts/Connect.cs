@@ -39,7 +39,7 @@ public class Connect : MonoBehaviour
         }
         if (other.tag == "ROPE")
         {
-            if (other.transform.parent.parent == null
+            if (other.transform.parent == null
             || other.transform.parent.parent.name == "RopeTween"
             || other.transform.parent.name == "RightHandAnchor"
             || other.transform.parent.name == "LeftHandAnchor")

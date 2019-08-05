@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6680075077675359629}
-  - component: {fileID: 6680075077675359628}
   m_Layer: 0
   m_Name: RopeTweenC
   m_TagString: Untagged
@@ -34,24 +33,6 @@ Transform:
   m_Father: {fileID: 7235302159761238968}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6680075077675359628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6680075077675359630}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &7235302158142826212
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7235302159075458763}
   - component: {fileID: 7235302159075458762}
+  - component: {fileID: 29265614}
   m_Layer: 8
   m_Name: RopeBody
   m_TagString: Untagged
@@ -428,6 +410,24 @@ MonoBehaviour:
   - {x: 0.0005, y: 8.742278e-11, z: 0}
   - {x: -0.00024999995, y: -0.00043301276, z: 0}
   - {x: -0.00025000004, y: 0.00043301273, z: 0}
+--- !u!114 &29265614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235302159075458761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7235302159761238972
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +576,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7235302158142826208}
     m_Modifications:
+    - target: {fileID: 3634065840642709525, guid: e143fa2706827724199b46cc9ff7b23c,
+        type: 3}
+      propertyPath: m_Name
+      value: RFLight
+      objectReference: {fileID: 0}
     - target: {fileID: 3634065840642737205, guid: e143fa2706827724199b46cc9ff7b23c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -630,11 +635,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3634065840642709525, guid: e143fa2706827724199b46cc9ff7b23c,
-        type: 3}
-      propertyPath: m_Name
-      value: RFLight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e143fa2706827724199b46cc9ff7b23c, type: 3}
@@ -651,6 +651,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7235302158237071755}
     m_Modifications:
+    - target: {fileID: 3634065840642709525, guid: e143fa2706827724199b46cc9ff7b23c,
+        type: 3}
+      propertyPath: m_Name
+      value: RBLight
+      objectReference: {fileID: 0}
     - target: {fileID: 3634065840642737205, guid: e143fa2706827724199b46cc9ff7b23c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -705,11 +710,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3634065840642709525, guid: e143fa2706827724199b46cc9ff7b23c,
-        type: 3}
-      propertyPath: m_Name
-      value: RBLight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e143fa2706827724199b46cc9ff7b23c, type: 3}
