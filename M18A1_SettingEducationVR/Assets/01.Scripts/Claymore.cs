@@ -6,6 +6,7 @@ public class Claymore : MonoBehaviour
 {
     private int leaf;
     public bool isConnected;
+    public bool canFire;
     private bool isCleared;
     private bool isSet;
     private GameObject connectedObj;
@@ -52,8 +53,8 @@ public class Claymore : MonoBehaviour
                 return;
             }
 
-            if (detonatorConn.isConnected && this.isConnected
-                && !electricTestConn.isConnected && setPointObj != null)
+            if (canFire && detonatorConn.isConnected && this.isConnected
+                && !electricTestConn.isConnected)
             {
                 foreach (OVRGrabber grabber in grabbers)
                 {

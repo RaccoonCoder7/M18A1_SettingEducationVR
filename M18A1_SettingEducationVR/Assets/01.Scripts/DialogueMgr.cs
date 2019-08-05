@@ -27,6 +27,8 @@ public class DialogueMgr : MonoBehaviour
     private GameObject dialogObj;
     private VideoPlayer videoPlayer;
     public VideoClip[] videoClips;
+    private GameObject claymoreView;
+    private GameObject claymoreViewText;
 
     public Connect detonatorConn;
     public Connect electricTestConn;
@@ -89,6 +91,10 @@ public class DialogueMgr : MonoBehaviour
         uiText = GameObject.Find("DialogueText").GetComponent<Text>();
         dialogObj = GameObject.Find("DialogCanvas");
         videoPlayer = dialogObj.transform.parent.Find("VideoPlayer").GetComponent<VideoPlayer>();
+        claymoreView = dialogObj.transform.parent.Find("ClaymoreView").gameObject;
+        claymoreViewText = dialogObj.transform.parent.Find("ClaymoreView_Text").gameObject;
+        claymoreView.SetActive(false);
+        claymoreViewText.SetActive(false);
 
         audio = GetComponent<AudioSource>();
 
@@ -201,6 +207,11 @@ public class DialogueMgr : MonoBehaviour
                             break;
                         case MineState.DetonConnELine8:
                             OutlineOnOff("DetonatorC", true);
+                            claymoreView.SetActive(true);
+                            claymoreViewText.SetActive(true);
+                            GameObject enemies = Resources.Load("Enemies") as GameObject;
+                            Instantiate(enemies);
+                            claymoreConn.canFire = true;
                             break;
                     }
                     GrabberChange(true);
@@ -347,8 +358,6 @@ public class DialogueMgr : MonoBehaviour
         if (detonatorConn.isConnected && !electricTestConn.isConnected && claymoreConn.isConnected
             && detonatorConn.connectedObj.tag == "ROPE" && mineState == MineState.ReELineConnMine7)
         {
-            GameObject enemies = Resources.Load("Enemies") as GameObject;
-            Instantiate(enemies);
             mineState = MineState.DetonConnELine8;
             OutlineOnOff("RopeTweenC", false);
             OutlineOnOff("ElectricTestC", false);
@@ -446,6 +455,20 @@ public class DialogueMgr : MonoBehaviour
         CreateDialogueText(dialogueList[SkipNextCount]);
         dialogObj.SetActive(true);
         GrabberChange(false);
+
+        foreach (OVRGrabber grabber in grabbers)
+        {
+            if (grabber.grabbedObject != null)
+            {
+                grabbedObject = grabber.grabbedObject;
+            }
+        }
+
+        foreach (OVRGrabber grabber in grabbers)
+        {
+            grabber.ForceRelease(grabbedObject);
+        }
+
         StartCoroutine("Run");
     }
 }
