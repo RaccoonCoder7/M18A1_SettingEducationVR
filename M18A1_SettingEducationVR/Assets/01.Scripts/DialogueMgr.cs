@@ -172,7 +172,7 @@ public class DialogueMgr : MonoBehaviour
                             LightOnOff("DCLight", true);
                             break;
                         case MineState.DetonConnETest1:
-                            OutlineOnOff("RopeBody", true);
+                            OutlineOnOff("RopeTween", true);
                             OutlineOnOff("M18ClaymoreMine", true);
                             OutlineOnOff("ElectricTestC", true);
                             LightOnOff("RFLight", true);
@@ -200,7 +200,7 @@ public class DialogueMgr : MonoBehaviour
                             OutlineOnOff("ElectricTestLight", true);
                             break;
                         case MineState.ReELineConnMine7:
-                            OutlineOnOff("RopeBody", true);
+                            OutlineOnOff("RopeTween", true);
                             OutlineOnOff("ElectricTestC", true);
                             OutlineOnOff("DetonatorC", true);
                             GameObject.Find("ElectricTestC").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0);
@@ -291,7 +291,7 @@ public class DialogueMgr : MonoBehaviour
         {
             mineState = MineState.ETestConnELine2;
             OutlineOnOff("M18ClaymoreMine", false);
-            OutlineOnOff("RopeBody", false);
+            OutlineOnOff("RopeTween", false);
             OutlineOnOff("ElectricTestC", false);
             LightOnOff("RFLight", false);
             LightOnOff("RBLight", false);
@@ -359,7 +359,7 @@ public class DialogueMgr : MonoBehaviour
             && detonatorConn.connectedObj.tag == "ROPE" && mineState == MineState.ReELineConnMine7)
         {
             mineState = MineState.DetonConnELine8;
-            OutlineOnOff("RopeBody", false);
+            OutlineOnOff("RopeTween", false);
             OutlineOnOff("ElectricTestC", false);
             OutlineOnOff("DetonatorC", false);
             EndDrawing();
