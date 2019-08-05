@@ -24,7 +24,6 @@ public class Claymore : MonoBehaviour
     public Connect electricTestConn;
     private OVRGrabbable grabbedObject;
     public DialogueMgr dialogueMgr;
-    private OVRHapticsClip clip;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +32,6 @@ public class Claymore : MonoBehaviour
         audio = GetComponent<AudioSource>();
         anchor = transform.Find("Anchor");
         Transform rays = transform.Find("Rays");
-        clip = new OVRHapticsClip(clips[1]);
         foreach (Transform child in rays)
         {
             MeshRenderer rend = child.Find("Cylinder").GetComponent<MeshRenderer>();
@@ -68,7 +66,8 @@ public class Claymore : MonoBehaviour
                     dialogueMgr.CheckState();
                     fireParticle.Play();
                     audio.PlayOneShot(clips[1]);
-                    VibrationMgr.singleton.TriggerVibration(OVRInput.Controller.RTouch);
+                    // VibrationMgr.singleton.TriggerVibration(OVRInput.Controller.RTouch);
+                    OVRInput.SetControllerVibration(0.7f, 0.7f, OVRInput.Controller.RTouch);
                     Destroy(setPointObj);
                     setPointObj = null;
                     Destroy(GameObject.Find("Enemies(Clone)"), 0.2f);
@@ -80,7 +79,7 @@ public class Claymore : MonoBehaviour
     }
 
     IEnumerator WaitAndPlay(){
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.7f);
         audio.PlayOneShot(clips[2]);
     }
 
