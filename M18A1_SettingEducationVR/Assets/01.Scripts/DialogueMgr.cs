@@ -43,6 +43,8 @@ public class DialogueMgr : MonoBehaviour
 
     private Vector3 originPos;
     private Quaternion originRot;
+    private Vector3 okCanvasOriginPos;
+    private float shakeStartTime;
 
     private AudioSource audio;
 
@@ -108,6 +110,7 @@ public class DialogueMgr : MonoBehaviour
         StartCoroutine("GroundTag", "Untagged");
 
         okCanvas = GameObject.Find("OkCanvas");
+        okCanvasOriginPos = okCanvas.transform.localPosition;
         okCanvas.SetActive(false);
         GrabberChange(false);
     }
@@ -350,6 +353,7 @@ public class DialogueMgr : MonoBehaviour
         {
             dialogObj.SetActive(false);
             okCanvas.SetActive(true);
+            StartCoroutine(ShakeCanvas(2f));
             nextDialogue = 0;
 
             if (SkipNextCount == dialogueList.Count - 1)
@@ -366,7 +370,6 @@ public class DialogueMgr : MonoBehaviour
         for (int i = 0; i < text.Length + 1; i++)
         {
             yield return new WaitForSeconds(0.02f);
-            Debug.LogError("00: " + i);
             if (i != 0 && text.Substring(i - 1, 1) == "<")
             {
                 i = getEndOfTag(text, i);
@@ -377,6 +380,18 @@ public class DialogueMgr : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         nowState = State.Next;
+    }
+
+    public IEnumerator ShakeCanvas(float amount)
+    {
+        shakeStartTime = Time.time;
+        while (shakeStartTime + 0.6f > Time.time)
+        {
+            Vector3 pos = (Vector3)Random.insideUnitCircle * amount * 8 + okCanvasOriginPos;
+            okCanvas.transform.localPosition = pos;
+            yield return new WaitForSeconds(0.03f);
+        }
+        okCanvas.transform.localPosition = okCanvasOriginPos;
     }
 
     private int getEndOfTag(string text, int i)

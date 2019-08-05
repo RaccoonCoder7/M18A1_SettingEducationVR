@@ -6,6 +6,7 @@ public class Claymore : MonoBehaviour
 {
     private int leaf;
     public bool isConnected;
+    private bool isCleared;
     private bool isSet;
     private GameObject connectedObj;
     private AudioSource audio;
@@ -22,6 +23,7 @@ public class Claymore : MonoBehaviour
     public Connect electricTestConn;
     private OVRGrabbable grabbedObject;
     public DialogueMgr dialogueMgr;
+    private OVRHapticsClip clip;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class Claymore : MonoBehaviour
         audio = GetComponent<AudioSource>();
         anchor = transform.Find("Anchor");
         Transform rays = transform.Find("Rays");
+        clip = new OVRHapticsClip(clips[1]);
         foreach (Transform child in rays)
         {
             MeshRenderer rend = child.Find("Cylinder").GetComponent<MeshRenderer>();
@@ -64,6 +67,7 @@ public class Claymore : MonoBehaviour
                     dialogueMgr.CheckState();
                     fireParticle.Play();
                     audio.PlayOneShot(clips[1]);
+                    VibrationMgr.singleton.TriggerVibration(OVRInput.Controller.RTouch);
                     Destroy(setPointObj);
                     setPointObj = null;
                     Destroy(GameObject.Find("Enemies(Clone)"), 0.2f);
@@ -137,10 +141,13 @@ public class Claymore : MonoBehaviour
 
     private bool CheckClaymoreHidden()
     {
+        if(isCleared){
+            return true;
+        }
         for (int i = 0; i < rayPoints.Count; i++)
         {
             ray = new Ray(rayPoints[i].position, rayPoints[i].up);
-            Debug.DrawRay(rayPoints[i].position, rayPoints[i].up, Color.green, 0.4f);
+            // Debug.DrawRay(rayPoints[i].position, rayPoints[i].up, Color.green, 0.4f);
             if (Physics.Raycast(ray, out hit, 0.4f, leaf))
             {
                 cylinders[i].enabled = false;
@@ -153,6 +160,7 @@ public class Claymore : MonoBehaviour
         }
         dialogueMgr.isHidden = true;
         dialogueMgr.CheckState();
+        isCleared = true;
         return true;
     }
 }

@@ -34,6 +34,7 @@ public class ElectricTest : MonoBehaviour
             {
                 dialogueMgr.CheckState();
                 gameObject.GetComponent<MeshRenderer>().material.color = new Color(212, 114, 0);
+                VibrationMgr.singleton.TriggerVibration(OVRInput.Controller.RTouch);
                 StartCoroutine("ColorChange");
             }
             grabbedObject = null;
