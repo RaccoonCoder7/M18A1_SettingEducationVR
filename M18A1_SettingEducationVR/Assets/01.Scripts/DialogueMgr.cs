@@ -51,6 +51,8 @@ public class DialogueMgr : MonoBehaviour
     public bool isSet = false;
     public bool isHidden = false;
 
+    public TweenMgr tweenMgr;
+
     enum State
     {
         Idle,
@@ -158,19 +160,26 @@ public class DialogueMgr : MonoBehaviour
                     switch (mineState)
                     {
                         case MineState.Idle0:
-                            OutlineOnOff("DetonatorP", true);
-                            OutlineOnOff("ElectricTestP", true);
+                            OutlineOnOff("DetonatorC", true);
+                            OutlineOnOff("ElectricTestC", true);
+                            LightOnOff("ETCBLight", true);
+                            LightOnOff("DCLight", true);
                             break;
                         case MineState.DetonConnETest1:
-                            OutlineOnOff("RopeTween", true);
+                            OutlineOnOff("RopeTweenC", true);
                             OutlineOnOff("M18ClaymoreMine", true);
-                            OutlineOnOff("ElectricTestP", true);
+                            OutlineOnOff("ElectricTestC", true);
+                            LightOnOff("RFLight", true);
+                            LightOnOff("RBLight", true);
+                            LightOnOff("MineLight", true);
+                            LightOnOff("ETCFLight", true);
                             break;
                         case MineState.ETestConnELine2:
-                            OutlineOnOff("DetonatorP", true);
+                            OutlineOnOff("DetonatorC", true);
                             OutlineOnOff("ElectricTestLight", true);
                             videoPlayer.gameObject.SetActive(true);
                             videoPlayer.clip = videoClips[1];
+                            tweenMgr.PanelMove();
                             break;
                         case MineState.ETestCheckLight3:
                             StartCoroutine("GroundTag", "GROUND");
@@ -181,23 +190,35 @@ public class DialogueMgr : MonoBehaviour
                             break;
                         case MineState.MineHide6:
                             StartCoroutine("GroundTag", "GROUND");
-                            OutlineOnOff("DetonatorP", true);
+                            OutlineOnOff("DetonatorC", true);
                             OutlineOnOff("ElectricTestLight", true);
                             break;
                         case MineState.ReELineConnMine7:
-                            OutlineOnOff("RopeTween", true);
-                            OutlineOnOff("ElectricTestP", true);
-                            OutlineOnOff("DetonatorP", true);
-                            GameObject.Find("ElectricTestP").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0);
+                            OutlineOnOff("RopeTweenC", true);
+                            OutlineOnOff("ElectricTestC", true);
+                            OutlineOnOff("DetonatorC", true);
+                            GameObject.Find("ElectricTestC").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0);
                             break;
                         case MineState.DetonConnELine8:
-                            OutlineOnOff("DetonatorP", true);
+                            OutlineOnOff("DetonatorC", true);
                             break;
                     }
                     GrabberChange(true);
                     okCanvas.SetActive(false);
                 }
             }
+        }
+    }
+
+    void LightOnOff(string path, bool onoff)
+    {
+        if (onoff)
+        {
+            GameObject.Find(path).GetComponent<ParticleSystem>().Play();
+        }
+        else
+        {
+            GameObject.Find(path).GetComponent<ParticleSystem>().Stop();
         }
     }
 
@@ -247,8 +268,10 @@ public class DialogueMgr : MonoBehaviour
         if (detonatorConn.isConnected && detonatorConn.connectedObj.tag == "IN" && mineState == MineState.Idle0)
         {
             mineState = MineState.DetonConnETest1;
-            OutlineOnOff("DetonatorP", false);
-            OutlineOnOff("ElectricTestP", false);
+            OutlineOnOff("DetonatorC", false);
+            OutlineOnOff("ElectricTestC", false);
+            LightOnOff("ETCBLight", false);
+            LightOnOff("DCLight", false);
             EndDrawing();
         }
 
@@ -257,8 +280,12 @@ public class DialogueMgr : MonoBehaviour
         {
             mineState = MineState.ETestConnELine2;
             OutlineOnOff("M18ClaymoreMine", false);
-            OutlineOnOff("RopeTween", false);
-            OutlineOnOff("ElectricTestP", false);
+            OutlineOnOff("RopeTweenC", false);
+            OutlineOnOff("ElectricTestC", false);
+            LightOnOff("RFLight", false);
+            LightOnOff("RBLight", false);
+            LightOnOff("MineLight", false);
+            LightOnOff("ETCFLight", false);
             videoPlayer.gameObject.SetActive(false);
             EndDrawing();
         }
@@ -270,10 +297,11 @@ public class DialogueMgr : MonoBehaviour
             if (CheckGrapDetonator())
             {
                 mineState = MineState.ETestCheckLight3;
-                OutlineOnOff("DetonatorP", false);
+                OutlineOnOff("DetonatorC", false);
                 OutlineOnOff("ElectricTestLight", false);
                 videoPlayer.gameObject.SetActive(true);
                 videoPlayer.clip = videoClips[0];
+                tweenMgr.PanelMove();
                 EndDrawing();
             }
             grabbedObject = null;
@@ -306,7 +334,7 @@ public class DialogueMgr : MonoBehaviour
             if (CheckGrapDetonator())
             {
                 mineState = MineState.ReELineConnMine7;
-                OutlineOnOff("DetonatorP", false);
+                OutlineOnOff("DetonatorC", false);
                 OutlineOnOff("ElectricTestLight", false);
                 ground.tag = "Untagged";
                 dialogObj.transform.parent.position = originPos;
@@ -322,9 +350,9 @@ public class DialogueMgr : MonoBehaviour
             GameObject enemies = Resources.Load("Enemies") as GameObject;
             Instantiate(enemies);
             mineState = MineState.DetonConnELine8;
-            OutlineOnOff("RopeTween", false);
-            OutlineOnOff("ElectricTestP", false);
-            OutlineOnOff("DetonatorP", false);
+            OutlineOnOff("RopeTweenC", false);
+            OutlineOnOff("ElectricTestC", false);
+            OutlineOnOff("DetonatorC", false);
             EndDrawing();
         }
 
@@ -335,7 +363,7 @@ public class DialogueMgr : MonoBehaviour
             if (CheckGrapDetonator())
             {
                 mineState = MineState.Fire9;
-                OutlineOnOff("DetonatorP", false);
+                OutlineOnOff("DetonatorC", false);
                 EndDrawing();
             }
             grabbedObject = null;

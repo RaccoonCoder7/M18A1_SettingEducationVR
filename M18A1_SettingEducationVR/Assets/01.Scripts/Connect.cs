@@ -33,14 +33,14 @@ public class Connect : MonoBehaviour
             Transform anchor = tr.parent.Find("InAnchor");
             connectedObj.transform.parent.position = anchor.position;
             connectedObj.transform.parent.rotation = anchor.rotation;
-            connectedObj.transform.parent.parent = anchor;
+            connectedObj.transform.parent.parent.parent = anchor;
             audio.Play();
             dialogueMgr.CheckState();
         }
         if (other.tag == "ROPE")
         {
-            if (other.transform.parent == null
-            || other.transform.parent.name == "RopeTween"
+            if (other.transform.parent.parent == null
+            || other.transform.parent.parent.name == "RopeTween"
             || other.transform.parent.name == "RightHandAnchor"
             || other.transform.parent.name == "LeftHandAnchor")
             {
@@ -67,7 +67,7 @@ public class Connect : MonoBehaviour
         {
             isConnected = false;
             connectedObj = null;
-            other.transform.parent.parent = null;
+            other.transform.parent.parent.parent = null;
             audio.PlayOneShot(separate);
         }
         if (other.tag == "ROPE")
