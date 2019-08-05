@@ -188,6 +188,7 @@ public class DialogueMgr : MonoBehaviour
                             tweenMgr.PanelMove();
                             break;
                         case MineState.ETestCheckLight3:
+                            OutlineOnOff("M18ClaymoreMine", true);
                             StartCoroutine("GroundTag", "GROUND");
                             showArrow = true;
                             break;
@@ -322,6 +323,7 @@ public class DialogueMgr : MonoBehaviour
         {
             mineState = MineState.MineSet5;
             videoPlayer.gameObject.SetActive(false);
+            OutlineOnOff("M18ClaymoreMine", false);
             ground.tag = "Untagged";
             originPos = dialogObj.transform.parent.position;
             originRot = dialogObj.transform.parent.rotation;
