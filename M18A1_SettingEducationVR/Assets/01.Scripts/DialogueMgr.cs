@@ -34,6 +34,7 @@ public class DialogueMgr : MonoBehaviour
     public Connect electricTestConn;
     public Claymore claymoreConn;
     private ArrowRenderer arrowRenderer;
+    private GameObject arrow;
     private Vector3 claymoreSetPoint;
     private bool showArrow;
 
@@ -86,6 +87,8 @@ public class DialogueMgr : MonoBehaviour
         dialogueList = new List<string>();
 
         arrowRenderer = GameObject.Find("ArrowRenderer").GetComponent<ArrowRenderer>();
+        arrow = GameObject.Find("AnimArrow");
+        arrow.SetActive(false);
         claymoreSetPoint = GameObject.Find("ClaymoreSetPoint").transform.position;
 
         uiText = GameObject.Find("DialogueText").GetComponent<Text>();
@@ -204,7 +207,7 @@ public class DialogueMgr : MonoBehaviour
                             OutlineOnOff("RopeTween", true);
                             OutlineOnOff("ElectricTestC", true);
                             OutlineOnOff("DetonatorC", true);
-                            GameObject.Find("ElectricTestC").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0);
+                            arrow.SetActive(true);
                             break;
                         case MineState.DetonConnELine8:
                             OutlineOnOff("DetonatorC", true);
@@ -364,6 +367,7 @@ public class DialogueMgr : MonoBehaviour
             OutlineOnOff("RopeTween", false);
             OutlineOnOff("ElectricTestC", false);
             OutlineOnOff("DetonatorC", false);
+            arrow.SetActive(false);
             EndDrawing();
         }
 
