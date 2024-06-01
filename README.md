@@ -12,6 +12,7 @@
 - 개발기간: 2019.07.25 - 2019.08.06
 - 사용기술: Unity, C#, OVR(Oculus Quest 2)
 - 참여자: RaccoonCoder7, LEEBYUNGNAM
+- 담당: 부품간 결합/분리, Rope 애셋 코드 개선, 연출
 
 </br>
 
