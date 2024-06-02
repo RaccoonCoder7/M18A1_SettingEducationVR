@@ -18,4 +18,4 @@
 
 ## 사진/영상 (영상은 클릭 시 유튜브로 이동 됨)
 <b>VR 크레모아 격발 훈련</b></br>
-[![그림자스텝](http://img.youtube.com/vi/e2Jnf9SyKu8/0.jpg)](https://youtu.be/e2Jnf9SyKu8)
+[![크레모아 격발 훈련](http://img.youtube.com/vi/e2Jnf9SyKu8/0.jpg)](https://youtu.be/e2Jnf9SyKu8)
